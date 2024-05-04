@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Jokes API Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      h2 {
+        color: #666;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: #ff7f50;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 10px;
+      }
+
+      code {
+        font-family: Consolas, monospace;
+        font-size: 14px;
+      }
+
+      .endpoint {
+        margin-bottom: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .endpoint h2 {
+        margin-bottom: 5px;
+        color: #ff7f50;
+      }
+
+      .endpoint p {
+        color: #888;
+      }
+
+      .example {
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .get-method {
+        color: #228b22;
+      }
+
+      .request {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .response {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #f5f5f5;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Jokes API Documentation</h1>
+    <p>Welcome to the Jokes API</p>
+    <div class="endpoint">
+      <h2>Get a Random Joke</h2>
+      <p>Returns a randomly selected joke from the available jokes.</p>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code><span class="get-method">GET</span> BASE_URL/random</code>
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+  "id": 55,
+  "jokeText": "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+  "jokeType": "Puns",
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="endpoint">
+      <h2>Filter Jokes</h2>
+      <p>Returns a list of jokes filtered by type .</p>
+      <p><strong>Query Parameters:</strong></p>
+      <ul>
+        <li>
+          <code>type</code>: The type of activity to filter by. Choice of
+          <code>Science , Puns, Wordplay, Math, Food, Movies, Sports</code>.
+        </li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">GET</span>
+            BASE_URL/filter?type=Science</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>[
+    {
+        "id": 1,
+        "jokeText": "Why don't scientists trust atoms? Because they make up everything.",
+        "jokeType": "Science"
+    },
+    {
+        "id": 6,
+        "jokeText": "How do you organize a space party? You planet!",
+        "jokeType": "Science"
+    }
+]</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="endpoint">
+      <h2>Get Jokes by id</h2>
+      <p>Returns the joke with the specified id.</p>
+      <p><strong>URL Parameters:</strong></p>
+      <ul>
+        <li><code>id</code>: The unique id of the joke.</li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">GET</span> BASE_URL/jokes/15</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+  "id": 15,
+  "jokeText": "I'm reading a book about anti-gravity. It's impossible to put down!",
+  "jokeType": "Science"
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <h2>Insert Jokes</h2>
+      <p>Insert a new joke .</p>
+      <p><strong>Body Parameters:</strong></p>
+      <ul>
+        <li><code>type</code>: The type of joke to insert.</li>
+        <li><code>text</code>: Joke that will get inserted.</li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code><span class="get-method">POST</span> BASE_URL/jokes</code>
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+    "message": "Joke added successfully at id=98"
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <h2>Edit a Joke</h2>
+      <p>Edit already existing joke .</p>
+      <p><strong>URL Parameters:</strong></p>
+      <ul>
+        <li><code>id</code>: Id of job that is going to updated.</li>
+      </ul>
+      <p><strong>Body Parameters:</strong></p>
+      <ul>
+        <li><code>type</code>: The type of joke .</li>
+        <li><code>text</code>: Joke text that will get updated.</li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">PUT</span> BASE_URL/jokes/98</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+      "id": 98,
+      "jokeText": "Why was the mobile phone wearing glasses?... Because it lost its contacts",
+      "jokeType": "Tech"
+    }</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <h2>Partial Edit a Joke</h2>
+      <p>Edit already existing joke .</p>
+      <p><strong>URL Parameters:</strong></p>
+      <ul>
+        <li><code>id</code>: Id of job that is going to updated.</li>
+      </ul>
+      <p><strong>Body Parameters:</strong></p>
+      <ul>
+        <li><code>type</code> (optional): The type of joke .</li>
+        <li><code>text</code> (optional): Joke text that will get updated.</li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">PUT</span> BASE_URL/jokes/98</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+        "id": 98,
+        "jokeText": "Why was the mobile phone wearing glasses?... Because it lost its contacts",
+        "jokeType": "Tech"
+      }</code></pre>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="endpoint">
+      <h2>Delete a Joke</h2>
+      <p>Delete already existing joke using id .</p>
+      <p><strong>URL Parameters:</strong></p>
+      <ul>
+        <li><code>id</code>: Id of job that is going to deleted.</li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">DELETE</span> BASE_URL/jokes/56</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>{
+          messgae:`Joke with id=56 is deleted.`
+        }</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <h2>Delete all Jokes</h2>
+      <p>Delete all joke with help of key .</p>
+      <p><strong>Query Parameters:</strong></p>
+      <ul>
+        <li>
+          <code>key</code>: User Key which authorized to perform this action.
+        </li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">DELETE</span>
+            BASE_URL/jokes?key=key_here</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>
+          {
+            message:`Delete action completed successfully`
+          }
+        </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <h2>Reset all Jokes</h2>
+      <p>Reset jokes using key .</p>
+      <p><strong>Query Parameters:</strong></p>
+      <ul>
+        <li>
+          <code>key</code>: User Key which authorized to perform this action.
+        </li>
+      </ul>
+      <div class="example">
+        <p><strong>Example Request:</strong></p>
+        <div class="request">
+          <code
+            ><span class="get-method">GET</span>
+            BASE_URL/jokes?key=key_here</code
+          >
+        </div>
+        <p><strong>Example Response:</strong></p>
+        <div class="response">
+          <pre><code>
+          {
+            message:"Jokes are reset."
+          }
+        </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Made By <a href="https://github.com/kuldeep9870">Kuldeep9870</a>
+    </footer>
+  </body>
+</html>
