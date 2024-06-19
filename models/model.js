@@ -6,11 +6,10 @@ const jokeSchema = new mongoose.Schema({
     jokeType: String 
 });
 
+const Joke = mongoose.model('Joke', jokeSchema);
 
-export const Joke = mongoose.model('Joke', jokeSchema);
+// module.exports  = Joke;
 
-// module.exports = { 
-//     Joke 
-// }
+export default Joke;
 
 
